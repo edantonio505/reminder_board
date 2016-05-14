@@ -107,7 +107,7 @@
 		var authenticated = localStorage.getItem('authenticated');
 		var reminders = [];
 
-		function showMessage()
+		function showMessages()
 		{	
 			reminders = JSON.parse(localStorage.getItem('reminders'));
 			if(reminders == null)
@@ -122,7 +122,7 @@
 
 		function checkifisloggedin()
 		{	
-			showMessage();
+			showMessages();
 			if(authenticated == true || authenticated != null)
 			{
 				loggedIn();
