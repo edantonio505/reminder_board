@@ -105,9 +105,24 @@
 		var user = document.getElementById('user');
 		var password = document.getElementById('password');
 		var authenticated = localStorage.getItem('authenticated');
+		var reminders = [];
+
+		function showMessage()
+		{	
+			reminders = JSON.parse(localStorage.getItem('reminders'));
+			if(reminders == null)
+			{
+				reminders = [];
+			}
+			for(var i = 0; i <= reminders.length - 1; i++)
+			{
+				addNewRemdinder(reminders[i].message);
+			}
+		}
 
 		function checkifisloggedin()
-		{
+		{	
+			showMessage();
 			if(authenticated == true || authenticated != null)
 			{
 				loggedIn();
@@ -117,6 +132,8 @@
 		function submit()
 		{
 			addNewRemdinder(newReminder.value);
+			reminders.push({message: newReminder.value});
+			localStorage.setItem('reminders', JSON.stringify(reminders));
 			newReminder.value = '';
 		}
 
